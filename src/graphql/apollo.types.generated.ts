@@ -201,25 +201,26 @@ export type QueryLocationsByIdsArgs = {
   ids: Array<Scalars['ID']>;
 };
 
-export type CharacterFieldsFragment = { __typename?: 'Character', id?: string | null, created?: string | null, gender?: string | null, image?: string | null, species?: string | null, status?: string | null, location?: { __typename?: 'Location', id?: string | null, name?: string | null, dimension?: string | null, type?: string | null } | null };
+export type CharacterFieldsFragment = { __typename?: 'Character', id?: string | null, name?: string | null, created?: string | null, gender?: string | null, image?: string | null, species?: string | null, status?: string | null, location?: { __typename?: 'Location', id?: string | null, name?: string | null, dimension?: string | null, type?: string | null } | null };
 
 export type FetchCharactersQueryVariables = Exact<{
   page?: InputMaybe<Scalars['Int']>;
 }>;
 
 
-export type FetchCharactersQuery = { __typename?: 'Query', characters?: { __typename?: 'Characters', info?: { __typename?: 'Info', count?: number | null, pages?: number | null, next?: number | null, prev?: number | null } | null, results?: Array<{ __typename?: 'Character', id?: string | null, created?: string | null, gender?: string | null, image?: string | null, species?: string | null, status?: string | null, location?: { __typename?: 'Location', id?: string | null, name?: string | null, dimension?: string | null, type?: string | null } | null } | null> | null } | null };
+export type FetchCharactersQuery = { __typename?: 'Query', characters?: { __typename?: 'Characters', info?: { __typename?: 'Info', count?: number | null, pages?: number | null, next?: number | null, prev?: number | null } | null, results?: Array<{ __typename?: 'Character', id?: string | null, name?: string | null, created?: string | null, gender?: string | null, image?: string | null, species?: string | null, status?: string | null, location?: { __typename?: 'Location', id?: string | null, name?: string | null, dimension?: string | null, type?: string | null } | null } | null> | null } | null };
 
 export type FetchCharacterQueryVariables = Exact<{
   id: Scalars['ID'];
 }>;
 
 
-export type FetchCharacterQuery = { __typename?: 'Query', character?: { __typename?: 'Character', id?: string | null, created?: string | null, gender?: string | null, image?: string | null, species?: string | null, status?: string | null, location?: { __typename?: 'Location', id?: string | null, name?: string | null, dimension?: string | null, type?: string | null } | null } | null };
+export type FetchCharacterQuery = { __typename?: 'Query', character?: { __typename?: 'Character', id?: string | null, name?: string | null, created?: string | null, gender?: string | null, image?: string | null, species?: string | null, status?: string | null, location?: { __typename?: 'Location', id?: string | null, name?: string | null, dimension?: string | null, type?: string | null } | null } | null };
 
 export const CharacterFieldsFragmentDoc = gql`
     fragment CharacterFields on Character {
   id
+  name
   created
   gender
   image
