@@ -2,15 +2,9 @@ import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
-export type Exact<T extends { [key: string]: unknown }> = {
-  [K in keyof T]: T[K];
-};
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
-  [SubKey in K]?: Maybe<T[SubKey]>;
-};
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
-  [SubKey in K]: Maybe<T[SubKey]>;
-};
+export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
 const defaultOptions = {} as const;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
@@ -24,7 +18,7 @@ export type Scalars = {
 
 export enum CacheControlScope {
   Private = 'PRIVATE',
-  Public = 'PUBLIC',
+  Public = 'PUBLIC'
 }
 
 export type Character = {
@@ -159,156 +153,103 @@ export type Query = {
   locationsByIds?: Maybe<Array<Maybe<Location>>>;
 };
 
+
 export type QueryCharacterArgs = {
   id: Scalars['ID'];
 };
+
 
 export type QueryCharactersArgs = {
   filter?: InputMaybe<FilterCharacter>;
   page?: InputMaybe<Scalars['Int']>;
 };
 
+
 export type QueryCharactersByIdsArgs = {
   ids: Array<Scalars['ID']>;
 };
 
+
 export type QueryEpisodeArgs = {
   id: Scalars['ID'];
 };
+
 
 export type QueryEpisodesArgs = {
   filter?: InputMaybe<FilterEpisode>;
   page?: InputMaybe<Scalars['Int']>;
 };
 
+
 export type QueryEpisodesByIdsArgs = {
   ids: Array<Scalars['ID']>;
 };
 
+
 export type QueryLocationArgs = {
   id: Scalars['ID'];
 };
+
 
 export type QueryLocationsArgs = {
   filter?: InputMaybe<FilterLocation>;
   page?: InputMaybe<Scalars['Int']>;
 };
 
+
 export type QueryLocationsByIdsArgs = {
   ids: Array<Scalars['ID']>;
 };
 
-export type CharacterFieldsFragment = {
-  __typename?: 'Character';
-  id?: string | null;
-  name?: string | null;
-  created?: string | null;
-  gender?: string | null;
-  image?: string | null;
-  species?: string | null;
-  status?: string | null;
-  location?: {
-    __typename?: 'Location';
-    id?: string | null;
-    name?: string | null;
-    dimension?: string | null;
-    type?: string | null;
-  } | null;
-};
+export type CharacterFieldsFragment = { __typename?: 'Character', id?: string | null, name?: string | null, created?: string | null, gender?: string | null, image?: string | null, species?: string | null, status?: string | null, location?: { __typename?: 'Location', id?: string | null, name?: string | null, dimension?: string | null, type?: string | null } | null };
 
 export type FetchCharactersQueryVariables = Exact<{
   page?: InputMaybe<Scalars['Int']>;
+  filter?: InputMaybe<FilterCharacter>;
 }>;
 
-export type FetchCharactersQuery = {
-  __typename?: 'Query';
-  characters?: {
-    __typename?: 'Characters';
-    info?: {
-      __typename?: 'Info';
-      count?: number | null;
-      pages?: number | null;
-      next?: number | null;
-      prev?: number | null;
-    } | null;
-    results?: Array<{
-      __typename?: 'Character';
-      id?: string | null;
-      name?: string | null;
-      created?: string | null;
-      gender?: string | null;
-      image?: string | null;
-      species?: string | null;
-      status?: string | null;
-      location?: {
-        __typename?: 'Location';
-        id?: string | null;
-        name?: string | null;
-        dimension?: string | null;
-        type?: string | null;
-      } | null;
-    } | null> | null;
-  } | null;
-};
+
+export type FetchCharactersQuery = { __typename?: 'Query', characters?: { __typename?: 'Characters', info?: { __typename?: 'Info', count?: number | null, pages?: number | null, next?: number | null, prev?: number | null } | null, results?: Array<{ __typename?: 'Character', id?: string | null, name?: string | null, created?: string | null, gender?: string | null, image?: string | null, species?: string | null, status?: string | null, location?: { __typename?: 'Location', id?: string | null, name?: string | null, dimension?: string | null, type?: string | null } | null } | null> | null } | null };
 
 export type FetchCharacterQueryVariables = Exact<{
   id: Scalars['ID'];
 }>;
 
-export type FetchCharacterQuery = {
-  __typename?: 'Query';
-  character?: {
-    __typename?: 'Character';
-    id?: string | null;
-    name?: string | null;
-    created?: string | null;
-    gender?: string | null;
-    image?: string | null;
-    species?: string | null;
-    status?: string | null;
-    location?: {
-      __typename?: 'Location';
-      id?: string | null;
-      name?: string | null;
-      dimension?: string | null;
-      type?: string | null;
-    } | null;
-  } | null;
-};
+
+export type FetchCharacterQuery = { __typename?: 'Query', character?: { __typename?: 'Character', id?: string | null, name?: string | null, created?: string | null, gender?: string | null, image?: string | null, species?: string | null, status?: string | null, location?: { __typename?: 'Location', id?: string | null, name?: string | null, dimension?: string | null, type?: string | null } | null } | null };
 
 export const CharacterFieldsFragmentDoc = gql`
-  fragment CharacterFields on Character {
+    fragment CharacterFields on Character {
+  id
+  name
+  created
+  gender
+  image
+  location {
     id
     name
-    created
-    gender
-    image
-    location {
-      id
-      name
-      dimension
-      type
-    }
-    species
-    status
+    dimension
+    type
   }
-`;
+  species
+  status
+}
+    `;
 export const FetchCharactersDocument = gql`
-  query fetchCharacters($page: Int) {
-    characters(page: $page) {
-      info {
-        count
-        pages
-        next
-        prev
-      }
-      results {
-        ...CharacterFields
-      }
+    query fetchCharacters($page: Int, $filter: FilterCharacter) {
+  characters(page: $page, filter: $filter) {
+    info {
+      count
+      pages
+      next
+      prev
+    }
+    results {
+      ...CharacterFields
     }
   }
-  ${CharacterFieldsFragmentDoc}
-`;
+}
+    ${CharacterFieldsFragmentDoc}`;
 
 /**
  * __useFetchCharactersQuery__
@@ -323,32 +264,28 @@ export const FetchCharactersDocument = gql`
  * const { data, loading, error } = useFetchCharactersQuery({
  *   variables: {
  *      page: // value for 'page'
+ *      filter: // value for 'filter'
  *   },
  * });
  */
-export function useFetchCharactersQuery(
-  baseOptions?: Apollo.QueryHookOptions<FetchCharactersQuery, FetchCharactersQueryVariables>,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<FetchCharactersQuery, FetchCharactersQueryVariables>(FetchCharactersDocument, options);
-}
-export function useFetchCharactersLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<FetchCharactersQuery, FetchCharactersQueryVariables>,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<FetchCharactersQuery, FetchCharactersQueryVariables>(FetchCharactersDocument, options);
-}
+export function useFetchCharactersQuery(baseOptions?: Apollo.QueryHookOptions<FetchCharactersQuery, FetchCharactersQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<FetchCharactersQuery, FetchCharactersQueryVariables>(FetchCharactersDocument, options);
+      }
+export function useFetchCharactersLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FetchCharactersQuery, FetchCharactersQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<FetchCharactersQuery, FetchCharactersQueryVariables>(FetchCharactersDocument, options);
+        }
 export type FetchCharactersQueryHookResult = ReturnType<typeof useFetchCharactersQuery>;
 export type FetchCharactersLazyQueryHookResult = ReturnType<typeof useFetchCharactersLazyQuery>;
 export type FetchCharactersQueryResult = Apollo.QueryResult<FetchCharactersQuery, FetchCharactersQueryVariables>;
 export const FetchCharacterDocument = gql`
-  query fetchCharacter($id: ID!) {
-    character(id: $id) {
-      ...CharacterFields
-    }
+    query fetchCharacter($id: ID!) {
+  character(id: $id) {
+    ...CharacterFields
   }
-  ${CharacterFieldsFragmentDoc}
-`;
+}
+    ${CharacterFieldsFragmentDoc}`;
 
 /**
  * __useFetchCharacterQuery__
@@ -366,27 +303,23 @@ export const FetchCharacterDocument = gql`
  *   },
  * });
  */
-export function useFetchCharacterQuery(
-  baseOptions: Apollo.QueryHookOptions<FetchCharacterQuery, FetchCharacterQueryVariables>,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<FetchCharacterQuery, FetchCharacterQueryVariables>(FetchCharacterDocument, options);
-}
-export function useFetchCharacterLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<FetchCharacterQuery, FetchCharacterQueryVariables>,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<FetchCharacterQuery, FetchCharacterQueryVariables>(FetchCharacterDocument, options);
-}
+export function useFetchCharacterQuery(baseOptions: Apollo.QueryHookOptions<FetchCharacterQuery, FetchCharacterQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<FetchCharacterQuery, FetchCharacterQueryVariables>(FetchCharacterDocument, options);
+      }
+export function useFetchCharacterLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FetchCharacterQuery, FetchCharacterQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<FetchCharacterQuery, FetchCharacterQueryVariables>(FetchCharacterDocument, options);
+        }
 export type FetchCharacterQueryHookResult = ReturnType<typeof useFetchCharacterQuery>;
 export type FetchCharacterLazyQueryHookResult = ReturnType<typeof useFetchCharacterLazyQuery>;
 export type FetchCharacterQueryResult = Apollo.QueryResult<FetchCharacterQuery, FetchCharacterQueryVariables>;
 export const namedOperations = {
   Query: {
     fetchCharacters: 'fetchCharacters',
-    fetchCharacter: 'fetchCharacter',
+    fetchCharacter: 'fetchCharacter'
   },
   Fragment: {
-    CharacterFields: 'CharacterFields',
-  },
-};
+    CharacterFields: 'CharacterFields'
+  }
+}

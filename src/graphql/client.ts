@@ -1,6 +1,19 @@
 import { ApolloClient, InMemoryCache } from '@apollo/client';
 
-export const apolloCache = new InMemoryCache();
+export const apolloCache = new InMemoryCache({
+  typePolicies: {
+    Query: {
+      fields: {
+        characters: {
+          keyArgs: false,
+          merge(existing = [], incoming) {
+            if (!existing.length) return incoming;
+          },
+        },
+      },
+    },
+  },
+});
 
 export interface CreateApolloClientConfig {
   urlBase: string;
