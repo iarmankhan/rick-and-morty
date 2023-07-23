@@ -12,7 +12,7 @@ export function ApolloProvider(props: ApolloProviderProps) {
     return createApolloClient({
       urlBase: props.urlBase,
     })
-  }, []);
+  }, [props.urlBase]);
 
   return (
     <BaseApolloProvider client={client}>

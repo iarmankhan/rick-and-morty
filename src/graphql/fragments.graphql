@@ -1,0 +1,14 @@
+fragment CharacterFields on Character {
+    id
+    created
+    gender
+    image
+    location {
+        id
+        name
+        dimension
+        type
+    }
+    species
+    status
+}

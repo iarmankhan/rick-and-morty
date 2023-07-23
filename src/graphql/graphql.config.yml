@@ -1,0 +1,5 @@
+schema: schema.generated.graphql
+documents: '**/*.graphql'
+extensions:
+  endpoints:
+    default: https://rickandmortyapi.com/graphql

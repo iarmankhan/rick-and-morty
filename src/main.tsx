@@ -14,7 +14,7 @@ import '@fontsource/inter/700.css';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <ApolloProvider urlBase={'http://localhost:4000/graphql'}>
+    <ApolloProvider urlBase={'https://rickandmortyapi.com/graphql'}>
     <ThemeProvider theme={theme}>
       {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
       <CssBaseline />
