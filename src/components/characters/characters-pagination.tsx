@@ -1,5 +1,5 @@
 import { Box, Pagination } from '@mui/material';
-import { useState } from 'react';
+import { useRickAndMortyStore } from '../../lib/store.ts';
 
 interface CharactersPaginationProps {
   totalPages: number;
@@ -7,7 +7,8 @@ interface CharactersPaginationProps {
 }
 
 export function CharactersPagination(props: CharactersPaginationProps) {
-  const [page, setPage] = useState(1);
+  const page = useRickAndMortyStore((state) => state.page);
+  const setPage = useRickAndMortyStore((state) => state.setPage);
 
   return (
     <Box
