@@ -2,7 +2,6 @@ import {PropsWithChildren, useMemo} from 'react';
 import {ApolloProvider as BaseApolloProvider} from '@apollo/client';
 import {createApolloClient} from "../graphql/client.ts";
 
-
 export interface ApolloProviderProps extends PropsWithChildren {
   urlBase: string
 }
