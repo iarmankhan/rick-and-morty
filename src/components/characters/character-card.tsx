@@ -1,5 +1,4 @@
-import {Box, Typography} from "@mui/material";
-
+import { Box, Typography } from '@mui/material';
 
 export interface Character {
   id: string;
@@ -8,7 +7,7 @@ export interface Character {
   species?: string;
   status?: string;
   gender?: string;
-  location?: string
+  location?: string;
 }
 
 interface CharacterCardProps {
@@ -16,21 +15,25 @@ interface CharacterCardProps {
 }
 
 export function CharacterCard(props: CharacterCardProps) {
-  const {character} = props;
+  const { character } = props;
 
-  return <Box sx={{
-    width: 300,
-    height: 400,
-    borderRadius: '4rem',
-  }}>
-    <img src={typeof character.image === 'string' ? character.image : undefined} alt={character.name}/>
-    <Typography variant="h5" component="div">
-      {character.name}
-    </Typography>
-    <Box>
-      <Typography variant="body2" color="text.secondary">
-        {character.species}
+  return (
+    <Box
+      sx={{
+        width: 300,
+        height: 400,
+        borderRadius: '4rem',
+      }}
+    >
+      <img src={typeof character.image === 'string' ? character.image : undefined} alt={character.name} />
+      <Typography variant="h5" component="div">
+        {character.name}
       </Typography>
+      <Box>
+        <Typography variant="body2" color="text.secondary">
+          {character.species}
+        </Typography>
+      </Box>
     </Box>
-  </Box>
+  );
 }

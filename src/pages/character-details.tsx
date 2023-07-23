@@ -1,3 +1,3 @@
-export function CharacterDetails () {
+export function CharacterDetails() {
   return <div>Hello world!</div>;
 }

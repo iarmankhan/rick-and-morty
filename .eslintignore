@@ -1,0 +1,4 @@
+node_modules/
+.prettierrc.cjs
+env.d.ts
+src/graphql/apollo.types.generated.ts
