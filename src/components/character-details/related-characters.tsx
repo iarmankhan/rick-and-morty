@@ -8,7 +8,7 @@ interface RelatedCharactersProps {
 }
 
 export function RelatedCharacters({ character }: RelatedCharactersProps) {
-  const { relatedCharacters, loading } = useFetchRelatedCharacters(character?.species);
+  const { relatedCharacters, loading } = useFetchRelatedCharacters(character?.id ?? '', character?.species ?? '');
 
   return (
     <Box
