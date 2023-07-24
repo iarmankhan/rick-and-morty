@@ -2,6 +2,10 @@
 
 #### Test task that uses [Rick and Morty API](https://rickandmortyapi.com/graphql) to display characters and details
 
+## Demo
+
+#### [https://rick-and-morty-smoky-iota.vercel.app/](https://rick-and-morty-smoky-iota.vercel.app/)
+
 ## Installation
 
 1. Clone the repo
