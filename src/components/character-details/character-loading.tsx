@@ -1,8 +1,8 @@
-import { Box, Container, Skeleton } from '@mui/material';
+import { Box, Skeleton } from '@mui/material';
 
 export function CharacterLoading() {
   return (
-    <Container maxWidth="lg" sx={{ py: '2rem' }}>
+    <>
       <Box
         sx={{
           display: 'flex',
@@ -57,6 +57,6 @@ export function CharacterLoading() {
           sx={{ padding: 2, borderRadius: '1rem', border: '1px solid #ccc' }}
         ></Skeleton>
       </Box>
-    </Container>
+    </>
   );
 }

@@ -6,11 +6,13 @@ interface CharactersListProps {
   characters: Character[];
   loading?: boolean;
   error?: Error;
+  loadingCards?: number;
+  small?: boolean;
 }
 
-const LoadingCards = () => {
-  return new Array(14).fill(0).map((_, index) => {
-    return <CharacterCardLoading key={index} />;
+const LoadingCards = ({ loadingCards, small }: { loadingCards: number; small?: boolean }) => {
+  return new Array(loadingCards).fill(0).map((_, index) => {
+    return <CharacterCardLoading key={index} small={small} />;
   });
 };
 
@@ -27,10 +29,10 @@ export function CharactersList(props: CharactersListProps) {
       }}
     >
       {props.loading ? (
-        <LoadingCards />
+        <LoadingCards loadingCards={props.loadingCards || 14} small={props.small} />
       ) : (
         props.characters.map((character) => {
-          return <CharacterCard key={character.id} character={character} />;
+          return <CharacterCard key={character.id} character={character} small={props.small} />;
         })
       )}
     </Box>

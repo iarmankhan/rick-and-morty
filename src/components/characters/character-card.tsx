@@ -13,17 +13,18 @@ export interface Character {
 
 interface CharacterCardProps {
   character: Character;
+  small?: boolean;
 }
 
 export function CharacterCard(props: CharacterCardProps) {
-  const { character } = props;
+  const { character, small } = props;
 
   return (
-    <Link to={character.id}>
+    <Link to={`/${character.id}`}>
       <Box
         sx={{
-          width: 300,
-          height: 400,
+          width: small ? 200 : 300,
+          height: small ? 300 : 400,
           borderRadius: '1.5rem',
           position: 'relative',
           boxShadow: '0 0 1rem rgba(0, 0, 0, 0.2)',
@@ -95,7 +96,7 @@ export function CharacterCard(props: CharacterCardProps) {
               component="div"
               sx={{
                 fontWeight: 'bold',
-                fontSize: '2rem',
+                fontSize: small ? '1.5rem' : '2rem',
               }}
             >
               {character.name}

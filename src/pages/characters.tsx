@@ -5,14 +5,23 @@ import { useMemo } from 'react';
 import { CharactersList } from '../components/characters/characters-list.tsx';
 import { CharactersPagination } from '../components/characters/characters-pagination.tsx';
 import { CharactersFilters, Filters } from '../components/characters/characters-filters.tsx';
+import { useRickAndMortyStore } from '../lib/store.ts';
 
 export function Characters() {
+  const storedPage = useRickAndMortyStore((state) => state.page);
+  const search = useRickAndMortyStore((state) => state.search);
+  const gender = useRickAndMortyStore((state) => state.gender);
+
   const { data, loading, error, refetch, fetchMore } = useFetchCharactersQuery({
     variables: {
-      page: 1,
-      filter: {},
+      page: storedPage,
+      filter: {
+        name: search,
+        gender,
+      },
     },
     notifyOnNetworkStatusChange: true,
+    fetchPolicy: 'cache-and-network',
   });
 
   const items = useMemo(() => transformCharacterListResponse(data), [data]);

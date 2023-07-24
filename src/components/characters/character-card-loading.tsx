@@ -1,11 +1,11 @@
 import { Skeleton } from '@mui/material';
 
-export function CharacterCardLoading() {
+export function CharacterCardLoading({ small }: { small?: boolean }) {
   return (
     <Skeleton
       variant="rectangular"
-      width={300}
-      height={400}
+      width={small ? 200 : 300}
+      height={small ? 300 : 400}
       sx={{
         borderRadius: '1.5rem',
         position: 'relative',
