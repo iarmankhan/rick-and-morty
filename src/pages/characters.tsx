@@ -28,7 +28,7 @@ export function Characters() {
   const page = data?.characters?.info?.pages ?? 0;
 
   return (
-    <Container maxWidth="lg">
+    <Container maxWidth="xl">
       <Typography variant="h1" sx={{ my: '2rem', fontSize: '2rem', fontWeight: 'bold', textAlign: 'center' }}>
         Rick and Morty Characters
       </Typography>

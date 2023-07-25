@@ -16,10 +16,10 @@ export function RelatedCharacters({ character }: RelatedCharactersProps) {
         mt: 8,
       }}
     >
-      <Typography variant="h3" sx={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#222', textAlign: 'center' }}>
+      <Typography variant="h3" sx={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#eee', textAlign: 'center' }}>
         Related Characters
       </Typography>
-      <CharactersList characters={relatedCharacters} loading={loading || !character?.species} loadingCards={5} small />;
+      <CharactersList characters={relatedCharacters} loading={loading || !character?.species} loadingCards={5} small />
     </Box>
   );
 }

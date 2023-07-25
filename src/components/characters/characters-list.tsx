@@ -29,7 +29,7 @@ export function CharactersList(props: CharactersListProps) {
       }}
     >
       {props.loading ? (
-        <LoadingCards loadingCards={props.loadingCards || 14} small={props.small} />
+        <LoadingCards loadingCards={props.loadingCards || 20} small={props.small} />
       ) : !props.characters?.length ? (
         <Box
           sx={{

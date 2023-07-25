@@ -40,11 +40,11 @@ export function CharacterDetails() {
           top: '1rem',
           left: '1rem',
         }}
-        onClick={() => navigate('/')}
+        onClick={() => navigate(-1)}
       >
         <ChevronLeft
           sx={{
-            color: '#222',
+            color: '#eee',
             fontSize: '2rem',
           }}
         />

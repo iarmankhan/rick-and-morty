@@ -13,6 +13,10 @@ const theme = createTheme({
     error: {
       main: red.A400,
     },
+    text: {
+      primary: '#fff',
+    },
+    mode: 'dark',
   },
 });
 
