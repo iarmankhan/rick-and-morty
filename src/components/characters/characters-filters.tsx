@@ -1,7 +1,7 @@
 import { Box, debounce, FormControl, InputAdornment, InputLabel, MenuItem, Select, TextField } from '@mui/material';
 import { useRickAndMortyStore } from '../../lib/store.ts';
 import { SearchRounded } from '@mui/icons-material';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 export type Filters = {
   search: string;
@@ -11,6 +11,7 @@ export type Filters = {
 export function CharactersFilters() {
   const [searchValue, setSearchValue] = useState('');
 
+  const search = useRickAndMortyStore((state) => state.search);
   const setSearch = useRickAndMortyStore((state) => state.setSearch);
 
   const gender = useRickAndMortyStore((state) => state.gender);
@@ -25,6 +26,10 @@ export function CharactersFilters() {
     }, 1000),
     [gender],
   );
+
+  useEffect(() => {
+    setSearchValue(search);
+  }, [search]);
 
   return (
     <Box
