@@ -1,18 +1,16 @@
 import { Box, debounce, FormControl, InputAdornment, InputLabel, MenuItem, Select, TextField } from '@mui/material';
 import { useRickAndMortyStore } from '../../lib/store.ts';
 import { SearchRounded } from '@mui/icons-material';
+import { useCallback, useState } from 'react';
 
 export type Filters = {
   search: string;
   gender: 'Male' | 'Female' | 'unknown' | '';
 };
 
-interface CharactersFiltersProps {
-  onChangeFilters: (filters: Filters) => void;
-}
+export function CharactersFilters() {
+  const [searchValue, setSearchValue] = useState('');
 
-export function CharactersFilters(props: CharactersFiltersProps) {
-  const search = useRickAndMortyStore((state) => state.search);
   const setSearch = useRickAndMortyStore((state) => state.setSearch);
 
   const gender = useRickAndMortyStore((state) => state.gender);
@@ -20,10 +18,13 @@ export function CharactersFilters(props: CharactersFiltersProps) {
 
   const setPage = useRickAndMortyStore((state) => state.setPage);
 
-  const debouncedFilterChange = debounce((newFilters: Filters) => {
-    props.onChangeFilters(newFilters);
-    setPage(1);
-  }, 1000);
+  const debouncedSearch = useCallback(
+    debounce((value: string) => {
+      setSearch(value);
+      setPage(1);
+    }, 1000),
+    [gender],
+  );
 
   return (
     <Box
@@ -34,13 +35,10 @@ export function CharactersFilters(props: CharactersFiltersProps) {
       }}
     >
       <TextField
-        value={search}
+        value={searchValue}
         onChange={(e) => {
-          setSearch(e.target.value);
-          debouncedFilterChange({
-            search: e.target.value,
-            gender,
-          });
+          setSearchValue(e.target.value);
+          debouncedSearch(e.target.value);
         }}
         type={'search'}
         placeholder="Search..."
@@ -66,10 +64,7 @@ export function CharactersFilters(props: CharactersFiltersProps) {
           label="Gender"
           onChange={(e) => {
             setGender(e.target.value as never);
-            debouncedFilterChange({
-              search,
-              gender: e.target.value as never,
-            });
+            setPage(1);
           }}
         >
           <MenuItem value="">

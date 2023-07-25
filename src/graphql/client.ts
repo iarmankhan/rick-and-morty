@@ -5,7 +5,7 @@ export const apolloCache = new InMemoryCache({
     Query: {
       fields: {
         characters: {
-          keyArgs: ['filter'],
+          keyArgs: ['filter', 'page'],
           merge(existing = [], incoming) {
             if (!existing.length) return incoming;
           },

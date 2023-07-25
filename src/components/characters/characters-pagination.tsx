@@ -3,7 +3,6 @@ import { useRickAndMortyStore } from '../../lib/store.ts';
 
 interface CharactersPaginationProps {
   totalPages: number;
-  onPageChange: (page: number) => void;
 }
 
 export function CharactersPagination(props: CharactersPaginationProps) {
@@ -23,7 +22,6 @@ export function CharactersPagination(props: CharactersPaginationProps) {
         count={props.totalPages}
         onChange={(_, newPage) => {
           setPage(newPage);
-          props.onPageChange(newPage);
         }}
       />
     </Box>

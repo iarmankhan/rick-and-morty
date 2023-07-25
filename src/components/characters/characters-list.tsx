@@ -1,5 +1,5 @@
 import { Character, CharacterCard } from './character-card.tsx';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { CharacterCardLoading } from './character-card-loading.tsx';
 
 interface CharactersListProps {
@@ -30,6 +30,16 @@ export function CharactersList(props: CharactersListProps) {
     >
       {props.loading ? (
         <LoadingCards loadingCards={props.loadingCards || 14} small={props.small} />
+      ) : !props.characters?.length ? (
+        <Box
+          sx={{
+            minHeight: '300px',
+            display: 'flex',
+            alignItems: 'center',
+          }}
+        >
+          <Typography variant="h6">No characters found</Typography>
+        </Box>
       ) : (
         props.characters.map((character) => {
           return <CharacterCard key={character.id} character={character} small={props.small} />;
